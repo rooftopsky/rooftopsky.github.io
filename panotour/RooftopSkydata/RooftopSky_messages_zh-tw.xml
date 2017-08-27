@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="zh-tw_project_title"><![CDATA[屋頂上的天空]]></data>
+  <data name="zh-tw_project_author_name"><![CDATA[Wesley Hsu]]></data>
+
+
+  <data name="zh-tw_panogroup28_title"><![CDATA[屋頂上的天空]]></data>
+
+  <data name="zh-tw_pano18_title"><![CDATA[入口]]></data>
+  <data name="zh-tw_spotpoint133_tooltip"><![CDATA[門口]]></data>
+  <data name="zh-tw_pano639_title"><![CDATA[2017門口]]></data>
+  <data name="zh-tw_spotpoint644_tooltip"><![CDATA[客廳]]></data>
+  <data name="zh-tw_spotpoint645_tooltip"><![CDATA[庭院]]></data>
+  <data name="zh-tw_spotpoint646_tooltip"><![CDATA[2017庭院]]></data>
+  <data name="zh-tw_spotpoint647_tooltip"><![CDATA[入口]]></data>
+  <data name="zh-tw_spotpoint966_tooltip"><![CDATA[2017夜景]]></data>
+  <data name="zh-tw_spotpoint967_tooltip"><![CDATA[2015門口]]></data>
+  <data name="zh-tw_pano640_title"><![CDATA[2017門口夜景]]></data>
+  <data name="zh-tw_spotpoint648_tooltip"><![CDATA[入口]]></data>
+  <data name="zh-tw_spotpoint649_tooltip"><![CDATA[客廳]]></data>
+  <data name="zh-tw_spotpoint650_tooltip"><![CDATA[庭院]]></data>
+  <data name="zh-tw_spotpoint651_tooltip"><![CDATA[2017院子]]></data>
+  <data name="zh-tw_spotpoint964_tooltip"><![CDATA[2017門口]]></data>
+  <data name="zh-tw_spotpoint965_tooltip"><![CDATA[2015門口]]></data>
+  <data name="zh-tw_pano638_title"><![CDATA[2017院子]]></data>
+  <data name="zh-tw_spotpoint652_tooltip"><![CDATA[入口]]></data>
+  <data name="zh-tw_spotpoint653_tooltip"><![CDATA[庭院]]></data>
+  <data name="zh-tw_spotpoint654_tooltip"><![CDATA[門口]]></data>
+  <data name="zh-tw_pano19_title"><![CDATA[庭院]]></data>
+  <data name="zh-tw_spotpoint252_tooltip"><![CDATA[門口]]></data>
+  <data name="zh-tw_pano14_title"><![CDATA[客廳]]></data>
+  <data name="zh-tw_spotpoint236_tooltip"><![CDATA[餐廳]]></data>
+  <data name="zh-tw_spotpoint250_tooltip"><![CDATA[門口]]></data>
+  <data name="zh-tw_pano11_title"><![CDATA[餐廳]]></data>
+  <data name="zh-tw_spotpoint237_tooltip"><![CDATA[廚房]]></data>
+  <data name="zh-tw_spotpoint239_tooltip"><![CDATA[走道]]></data>
+  <data name="zh-tw_spotpoint249_tooltip"><![CDATA[客廳]]></data>
+  <data name="zh-tw_pano12_title"><![CDATA[廚房]]></data>
+  <data name="zh-tw_spotpoint238_tooltip"><![CDATA[盥洗室]]></data>
+  <data name="zh-tw_spotpoint248_tooltip"><![CDATA[餐廳]]></data>
+  <data name="zh-tw_pano13_title"><![CDATA[盥洗室]]></data>
+  <data name="zh-tw_spotpoint247_tooltip"><![CDATA[廚房]]></data>
+  <data name="zh-tw_pano10_title"><![CDATA[走道]]></data>
+  <data name="zh-tw_spotpoint240_tooltip"><![CDATA[四人房2]]></data>
+  <data name="zh-tw_spotpoint241_tooltip"><![CDATA[四人房1]]></data>
+  <data name="zh-tw_spotpoint242_tooltip"><![CDATA[雙人房]]></data>
+  <data name="zh-tw_spotpoint246_tooltip"><![CDATA[餐廳]]></data>
+  <data name="zh-tw_pano9_title"><![CDATA[四人房1]]></data>
+  <data name="zh-tw_spotpoint245_tooltip"><![CDATA[走道]]></data>
+  <data name="zh-tw_pano16_title"><![CDATA[雙人房]]></data>
+  <data name="zh-tw_spotpoint243_tooltip"><![CDATA[走道]]></data>
+  <data name="zh-tw_pano15_title"><![CDATA[四人房2]]></data>
+  <data name="zh-tw_spotpoint244_tooltip"><![CDATA[走道]]></data>
+  <data name="zh-tw_pano17_title"><![CDATA[2015門口]]></data>
+  <data name="zh-tw_spotpoint134_tooltip"><![CDATA[庭院]]></data>
+  <data name="zh-tw_spotpoint200_tooltip"><![CDATA[客廳]]></data>
+  <data name="zh-tw_spotpoint251_tooltip"><![CDATA[入口]]></data>
+  <data name="zh-tw_spotpoint969_tooltip"><![CDATA[2017夜景]]></data>
+  <data name="zh-tw_spotpoint970_tooltip"><![CDATA[2017門口]]></data>
+
+
+
+
+
+	<data name="zh-tw_panogroup28_floor_title"><![CDATA[屋頂上的天空]]></data>
+	<data name="zh-tw_spotmap261_tooltip"><![CDATA[入口]]></data>
+	<data name="zh-tw_spotmap262_tooltip"><![CDATA[門口]]></data>
+	<data name="zh-tw_spotmap263_tooltip"><![CDATA[客廳]]></data>
+	<data name="zh-tw_spotmap264_tooltip"><![CDATA[餐廳]]></data>
+	<data name="zh-tw_spotmap265_tooltip"><![CDATA[庭院]]></data>
+	<data name="zh-tw_spotmap267_tooltip"><![CDATA[雙人房]]></data>
+	<data name="zh-tw_spotmap268_tooltip"><![CDATA[走道]]></data>
+	<data name="zh-tw_spotmap269_tooltip"><![CDATA[廚房]]></data>
+	<data name="zh-tw_spotmap270_tooltip"><![CDATA[盥洗室]]></data>
+	<data name="zh-tw_spotmap271_tooltip"><![CDATA[四人房1]]></data>
+	<data name="zh-tw_spotmap272_tooltip"><![CDATA[四人房2]]></data>
+	<data name="zh-tw_spotmap961_tooltip"><![CDATA[]]></data>
+
+  <data name="zh-tw_projectionMenumenutitlelabel"><![CDATA[投影法]]></data>
+  <data name="zh-tw_projectionMenunormallabel"><![CDATA[正常視角]]></data>
+  <data name="zh-tw_projectionMenufisheyelabel"><![CDATA[魚眼視角]]></data>
+  <data name="zh-tw_projectionMenuarchitecturallabel"><![CDATA[建築視角]]></data>
+  <data name="zh-tw_projectionMenustereographiclabel"><![CDATA[立體攝影視角]]></data>
+  <data name="zh-tw_projectionMenupanninilabel"><![CDATA[Pannini 視角]]></data>
+  <data name="zh-tw_projectionMenulittleplanetlabel"><![CDATA[小行星視角]]></data>
+  <data name="zh-tw_projectionMenufisheyeballlabel"><![CDATA[魚眼球視角]]></data>
+  <data name="zh-tw_contextmenuopenwebsitelabel1"><![CDATA[屋頂上的天空 FaceBook]]></data>
+  <data name="zh-tw_contextmenuwebsiteurl1"><![CDATA[https://www.fb.com/WuDingTengKong]]></data>
+  <data name="zh-tw_contextmenuopenwebsitelabel2"><![CDATA[屋頂上的天空 Blog]]></data>
+  <data name="zh-tw_contextmenuwebsiteurl2"><![CDATA[http://sky52088.blogspot.tw/]]></data>
+  <data name="zh-tw_contextmenuopenFsLabel"><![CDATA[進入全螢幕]]></data>
+  <data name="zh-tw_contextmenucloseFsLabel"><![CDATA[離開全螢幕]]></data>
+  <data name="zh-tw_contextmenunormallabel"><![CDATA[正常視角]]></data>
+  <data name="zh-tw_contextmenufisheyelabel"><![CDATA[魚眼視角]]></data>
+  <data name="zh-tw_contextmenuarchitecturallabel"><![CDATA[建築視角]]></data>
+  <data name="zh-tw_contextmenustereographiclabel"><![CDATA[立體攝影視角]]></data>
+  <data name="zh-tw_contextmenupanninilabel"><![CDATA[Pannini 視角]]></data>
+  <data name="zh-tw_contextmenulittleplanetlabel"><![CDATA[小行星視角]]></data>
+  <data name="zh-tw_contextmenufisheyeballlabel"><![CDATA[魚眼球視角]]></data>
+  <data name="zh-tw_floorPlandisplay_close_text"><![CDATA[Close]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsprevSceneTip"><![CDATA[前一個全景]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsnextSceneTip"><![CDATA[下一個全景]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailszoomInTip"><![CDATA[放大]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailszoomOutTip"><![CDATA[縮小]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsmoveLeftTip"><![CDATA[向左移動]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsmoveRightTip"><![CDATA[向右移動]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsmoveUpTip"><![CDATA[向上移動]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsmoveDownTip"><![CDATA[向下移動]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailshomeTip"><![CDATA[首頁]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsopenFsTip"><![CDATA[進入全螢幕]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailscloseFsTip"><![CDATA[離開全螢幕]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsautorotateOnTip"><![CDATA[開始自動旋轉]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsautorotateOffTip"><![CDATA[停止自動旋轉]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsautotourOnTip"><![CDATA[開始自動導覽]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsautotourOffTip"><![CDATA[停止自動導覽]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsshowSpotsTip"><![CDATA[顯示移動點]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailshideSpotsTip"><![CDATA[隱藏移動點]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsdisplayFloorplanTip"><![CDATA[顯示平面圖]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailshideFloorplanTip"><![CDATA[隱藏平面圖]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsshareTip"><![CDATA[與好友分享]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsdisplayHelpTip"><![CDATA[顯示說明視窗]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailshideHelpTip"><![CDATA[隱藏說明視窗]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsenterVRTip"><![CDATA[VR 模式]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsenterVRNotTip"><![CDATA[VR 模式未啟用]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailsdisplayControlsTip"><![CDATA[顯示控制]]></data>
+  <data name="zh-tw_controlBar_dockedThumbnailshideControlsTip"><![CDATA[隱藏控制]]></data>
+  <data name="zh-tw_socialShareclose_text"><![CDATA[Close]]></data>
+  <data name="zh-tw_logowebsiteurl"><![CDATA[https://www.fb.com/WuDingTengKong]]></data>
+
+
+  <data name="zh-tw_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="zh-tw_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="zh-tw_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="zh-tw_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="zh-tw_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="zh-tw_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="zh-tw_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="zh-tw_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="zh-tw_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="zh-tw_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="zh-tw_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="zh-tw_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="zh-tw_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="zh-tw_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="zh-tw_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="zh-tw_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="zh-tw_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="zh-tw_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="zh-tw_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="zh-tw_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="zh-tw_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="zh-tw_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="zh-tw_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="zh-tw_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="zh-tw_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="zh-tw_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="zh-tw_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="zh-tw_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="zh-tw_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="zh-tw_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+  <data name="zh-tw_project_description"><![CDATA[FaceBook：<div><a href="https://www.facebook.com/708427102545162" target="_blank">https://www.facebook.com/708427102545162</a><div>Blog：</div><div><a href="/"><span id="goog_1677400152"></span>http://sky52088.blogspot.tw/<span id="goog_1677400153"></span></a></div></div>]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

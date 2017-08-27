@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="屋頂上的天空,環山部落,梨山,民宿"/>
+    <link href="../images/logo.ico" rel="shortcut icon">
+
+    <meta name="robots" content="noindex">
+    <title>屋頂上的天空 聯絡我們</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
+
+
+    <style type="text/css">
+        /** {*/
+        /*margin: 0;*/
+        /*padding: 0;*/
+        /*}*/
+
+        /*html, body {*/
+        /*height: 100%;*/
+        /*width: 100%;*/
+        /*}*/
+
+        #bg, #bg2 {
+            background: #000 none 50% / cover no-repeat;
+        }
+
+        #bg, #bg2, #page {
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #page {
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpiZGBg6GGAgEUggokBDTACsR6yAIYKgAADAE0GAWM9RhAyAAAAAElFTkSuQmCC);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .navContaner {
+            top: 20px;
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            z-index: 99;
+        }
+
+        .navOverwrite {
+            display: inline-block;
+            max-width: 900px;
+        }
+
+        .buttonStype {
+            margin: 5px;
+        }
+
+        .containerDesign {
+            margin-top: 200px;
+        }
+
+        .contantDs {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+
+        .contantRS {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        .labelEmail {
+            padding: 7px;
+        }
+
+        .labelEmailValue {
+            padding: 6px;
+            margin: -4px;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            var images = [
+                "../images/rs008.jpg",
+                "../images/rs006.jpg",
+                "../images/rs007.jpg",
+                "../images/rs003.jpg"
+            ];
+            var $body = $("#bg"),
+                $bg = $("#bg2"),
+                n = images.length,
+                c = 0; // Loop Counter
+
+            // Preload Array of images...
+            for (var i = 0; i < n; i++) {
+                var tImg = new Image();
+                tImg.src = images[i];
+            }
+
+            $body.css({backgroundImage: "url(" + images[c] + ")"});
+
+            (function loopBg() {
+                $bg.hide().css({backgroundImage: "url(" + images[++c % n] + ")"}).delay(3000).fadeTo(1200, 1, function () {
+                    $body.css({backgroundImage: "url(" + images[c % n] + ")"});
+                    loopBg();
+                });
+            }());
+        });
+
+    </script>
+</head>
+<body>
+
+<div class="navContaner">
+    <nav class="navbar navbar-expand-lg navbar-dark navOverwrite">
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarTogglerUl"
+                aria-controls="navbarTogglerUl" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerUl">
+            <a href="../"> <img src="../images/Logo.png" class="buttonStype"></a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning buttonStype" href="../">首頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning buttonStype" href="../panotour/">全景導覽</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning buttonStype" href="../huntertrail/">獵人步道全景</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="btn btn-danger buttonStype" href="../contacts/">聯絡我們<span
+                            class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container containerDesign">
+    <div class="contantRS rounded">
+        <div class="media">
+            <img class="d-flex mr-3" src="../images/Logo.png" alt="Generic placeholder image">
+            <div class="media-body">
+                <h2 class="mt-0">屋頂上的天空</h2>
+                <h5 class="mt-0">0910-878-633</h5>
+                <h5 class="mt-0">台中市和平區平等里中興路三段環山三巷23號</h5>
+                <a href="mailto:isaac7lo@gmail.com"><label class="labelEmail btn-info rounded-left">E-Mail</label>
+                    <label class="labelEmailValue border border-info rounded-right">isaac7lo@gmail.com</labea>
+                </a>
+                <br/>
+                <a href="http://fb.com/708427102545162" class="btn btn-primary" role="button">FaceBook 粉絲團</a>
+                <a href="http://sky52088.blogspot.tw" class="btn btn-danger" role="button">Blogger</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                    路線圖
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="contantDs rounded" style="margin-top: 100px">
+        <div class="media">
+            <img class="d-flex mr-3" src="../images/wlogo.png" alt="Generic placeholder image">
+            <div class="media-body">
+                <div class="row">
+                    <div class="col-2"><h5 class="mt-0">Web Designer</h5></div>
+                    <div class="col-5"><h1 class="mt-0">Wesley Hsu</h1></div>
+                    <div class="w-100"></div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-5">
+                        <a href="mailto:hsu.wesley@gmail.com"><label
+                                class="labelEmail btn-info rounded-left">E-Mail</label>
+                            <label class="labelEmailValue border border-info rounded-right">hsu.wesley@gmail.com</labea>
+                        </a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="bg"></div>
+<div id="bg2"></div>
+<div id="page"></div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">屋頂上的天空路線圖</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-danger">點擊圖片可以取得大尺寸地圖</h5>
+                <a href="../images/map.png"> <img src="../images/map.jpg"></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
