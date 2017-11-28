@@ -249,7 +249,7 @@ function eventKrpanoLoaded (isWebVr) {
 	
 	tourLanguage = getKrValue("tour_language","string")
 	if(typeof tourLanguage == "undefined"){
-		tourLanguage = 'en';
+		tourLanguage = 'zh-tw';
 	}
 	ktools.I18N.getInstance().initLanguage(tourLanguage, crossDomainTargetUrl+'HunterTraildata/HunterTrail_messages_','.xml');
 	krpanoLoaded = true;

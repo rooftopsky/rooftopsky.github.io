@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <krpano>
-  <!-- Global variables used by actions and plugins -->
   <krpano 
         tour_soundson="false" 
         tour_soundsvolume="100" 
@@ -15,7 +14,7 @@
         tour_displayinfo="false"
         tour_displayspots="true"
         tour_displaycontrols="true"
-        tour_language="en" />
+        tour_language="zh-tw" />
   <krpano tour_gyroscopedevices="true" devices="no-desktop.and.html5" />
   <krpano tour_vrdevices="true" devices="html5" />
   <krpano videos_sounds_path="%FIRSTXML%" devices="html5" />
@@ -29,7 +28,6 @@
     mul(stagescale,get(vrtourdevicescale));
   </action>
 
-  <!-- Control Mode Management -->
   <control mouse="moveto" touch="drag" />
   <action name="setControlModeDragTo">setControlMode(drag);</action>
   <action name="setControlModeMoveTo">setControlMode(moveto);</action>
@@ -46,13 +44,11 @@
 
 
 
-  <!-- Tour Messages -->
   <action name="getmessage">
     txtadd(real_message_id, get(tour_language), "_", %2);
     set(%1, get(data[get(real_message_id)].content));
   </action>
 
-  <!-- Hide / Show Hotspots -->
   <action name="hideHotspots">
     set(tour_displayspots, false);
     set(nb_spots, get(hotspot.count));
@@ -75,14 +71,119 @@
   </action>
 
 
-
   <action name="startbehavioursxmlcompleteaction">
-    ifnot (tour_firststartactiondone,
-      set(tour_firststartactiondone, true);
-      events.dispatch(onTourStart);
+    if (skipintro !== null,
+      set(tour_firstlittleplanet, false);
+      ifnot (tour_firststartactiondone,
+        set(tour_firststartactiondone, true);
+        events.dispatch(onTourStart);
+      );
+      events.dispatch(onPanoStart);
+    ,
+
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      
+      
+      stoptween(view.fov);
+      stoptween(view.fovmax);
+      stoptween(view.hlookat);
+      stoptween(view.vlookat);
+      stoptween(view.fisheye);
+      
+      if (sceneisfull360 AND (device.webgl OR device.flash),
+	    setlittleplanet();
+      );
+
+
+    ifnot (sceneisfull360,
+      
+      set(view.fovmax, get(panoview.fovmax));
+      set(view.hlookat, get(panoview.h));
+      set(view.vlookat, get(panoview.v));
+      set(view.fisheye, 0.0);
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.pannini, 0.0);
+      set(view.fisheyefovlink, 0.5);
+      set(view.fov, get(panoview.fov));
+      
+      ifnot (tour_firststartactiondone,
+        events.dispatch(onTourStart);
+      );
+      events.dispatch(onPanoStart);
     );
-    events.dispatch(onPanoStart);
+
+    set(tour_firststartactiondone, true);
+    );
   </action>
+
+  <action name="startLittlePlanetIntroEffect">
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      if (sceneisfull360,
+        fromlittleplanetintrotonormalview();
+      );
+  </action>
+
+  <action name="setlittleplanet">
+    set(view.architectural, 0.0);
+    set(view.hlookat, get(panoview.h));
+    set(view.vlookat, 90);
+    set(view.pannini, 0.0);
+    if(panoview.fovmax LE 150,
+      set(view.fovmax, 150);
+    ,
+      set(view.fovmax, get(panoview.fovmax));
+    );
+    set(view.stereographic, true);
+    set(view.fisheyefovlink, 1.5);
+    set(view.fisheye, 1.0);
+    set(view.fov, 150);
+    
+    events.dispatch(onStartLittlePlanetIntroduction);
+  </action>
+  <action name="fromlittleplanetintrotonormalview">
+	tweennormalview();
+  </action>
+  <action name="tweennormalview">
+    hideTooltip();
+    tween(view.fovmax, get(panoview.fovmax), 3, easeoutquad);
+    tween(view.hlookat,  get(panoview.h), 3, easeoutquad);
+    tween(view.vlookat, get(panoview.v), 3, easeoutquad);
+    if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), 3, easeoutquad); );
+    tween(view.pannini, 0.0, 3, easeoutquad);
+    tween(view.fisheye, 0.0, 3, easeoutquad, 
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.fisheyefovlink, 0.5);
+      
+      
+      events.dispatch(onEndLittlePlanetIntroduction, true);
+      if (tour_firstlittleplanet,
+        events.dispatch(onTourStart, true);
+        set(tour_firstlittleplanet, false);
+      );
+      events.dispatch(onPanoStart, true);
+    );
+  </action>
+
 
 
 
@@ -120,7 +221,6 @@
     );
   </action>
 
-  <!-- Load Previous Scene -->
   <action name="loadPreviousScene">
     if (%1 != findscene, sub(sceneprevnexti, scene.count, 1));
     copy(scenenamei, scene[get(sceneprevnexti)].name);
@@ -137,7 +237,6 @@
     );
   </action>
 
-  <!-- Load Next Scene -->
   <action name="loadNextScene">
     if (%1 != findscene, set(sceneprevnexti,0));
     copy(scenenamei, scene[get(sceneprevnexti)].name);
@@ -153,7 +252,6 @@
   </action>
 
 
-  <!-- AUTOROTATION -->
   <autorotate enabled="false"/>
   <krpano tour_autorotation_pausecounter="0"/>
   <krpano tour_autorotation_pauseplugin="0"/>
@@ -248,7 +346,6 @@
   <events name="autorotation_events" onnewpano="if(tour_autorotation_pauseplugin LE 0,resumeautorotation(forceresume););" ongyroscopeon="pauseautorotation(forceplugin);" ongyroscopeoff="resumeautorotation(forceplugin);" keep="true"/>
 
 
-  <!-- AUTOTOUR -->
 
   <krpano useautotourdelay="false" autotourdelay="5" autotourHorizontalStartValue="0" />
   <action name="startautotour">
@@ -394,7 +491,6 @@ stopautorotation();
   </action>
 
 
-  <!-- Spot animation management -->
   <action name="animate">
     if (tour_stopsequence == false,
       if (stopspotsequence == false,
@@ -425,11 +521,9 @@ stopautorotation();
     );
   </action>
 
-  <!-- Disable the default fullscreen mode as it does a fullscreen only on the viewer not "on the tour" -->
+  
   <contextmenu fullscreen="false" versioninfo="false" />
 
-  <!-- Tooltips management -->
-<!-- Tooltip Management -->
 <krpano tooltipCurrentTextfieldLayer="panotourTooltipDefaultText" coretooltipmess=""/>
 
 <events name="showHideTooltipEvents" onremovepano="hideTooltip();" keep="true" />
@@ -661,7 +755,7 @@ stopautorotation();
 
 
 
-<!-- Default HTML5 tooltip style -->
+
 <layer name="panotourTooltipDefaultText"
 	keep="true"
 	enabled="false"
@@ -687,17 +781,12 @@ stopautorotation();
 
 
 
-  <!-- Keyboard management 
-  * use the keyboard +/- keys to zoom in/out
-  * use the keyboard CTRL+0 keys to reset the default panorama view
-  -->
   <control keycodesin="107,187" keycodesout="109,189" />
   <krpano tour_ctrlPressed="false"/>
   <events name="keycontrolZoomEvents" onkeydown="onKDZ" onkeyup="onKUZ" keep="true"/>
   <action name="onKDZ">if(keycode==17,set(tour_ctrlPressed,true);,if(tour_ctrlPressed==true,if(keycode==96,hideTooltip();lookto(get(panoview.h),get(panoview.v),get(panoview.fov)););););</action>
   <action name="onKUZ">if(keycode==17,set(tour_ctrlPressed,false););</action>
 
-  <!-- Indicate if a scene is seen or not - dispatch an event if the state is changed -->
   <events name="sceneSeenEvents" onnewpano="changeSeenState" keep="true"/>
   <action name="changeSeenState">
     ifnot (scene[get(xml.scene)].seen,
@@ -707,7 +796,6 @@ stopautorotation();
   </action>
 
 
-  <!-- Cursors management -->
   <cursors standard="" dragging="" moving="" />
   <events name="cursorsEvents" onnewpano="setCursor" oncontrolmodechanged="setCursor" keep="true" devices="desktop" />
   <action name="setCursor">
@@ -717,7 +805,7 @@ stopautorotation();
       sethandcursors();
     );
   </action>
-  <!-- Change Cursors Appearance -->
+
 
   <action name="setarrowcursors">
     if (device.flash,

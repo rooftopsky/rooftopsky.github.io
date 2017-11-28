@@ -75,14 +75,119 @@
   </action>
 
 
-
   <action name="startbehavioursxmlcompleteaction">
-    ifnot (tour_firststartactiondone,
-      set(tour_firststartactiondone, true);
-      events.dispatch(onTourStart);
+    if (skipintro !== null,
+      set(tour_firstlittleplanet, false);
+      ifnot (tour_firststartactiondone,
+        set(tour_firststartactiondone, true);
+        events.dispatch(onTourStart);
+      );
+      events.dispatch(onPanoStart);
+    ,
+
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      
+      
+      stoptween(view.fov);
+      stoptween(view.fovmax);
+      stoptween(view.hlookat);
+      stoptween(view.vlookat);
+      stoptween(view.fisheye);
+      
+      if (sceneisfull360 AND (device.webgl OR device.flash),
+	    setlittleplanet();
+      );
+
+
+    ifnot (sceneisfull360,
+      
+      set(view.fovmax, get(panoview.fovmax));
+      set(view.hlookat, get(panoview.h));
+      set(view.vlookat, get(panoview.v));
+      set(view.fisheye, 0.0);
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.pannini, 0.0);
+      set(view.fisheyefovlink, 0.5);
+      set(view.fov, get(panoview.fov));
+      
+      ifnot (tour_firststartactiondone,
+        events.dispatch(onTourStart);
+      );
+      events.dispatch(onPanoStart);
     );
-    events.dispatch(onPanoStart);
+
+    set(tour_firststartactiondone, true);
+    );
   </action>
+
+  <action name="startLittlePlanetIntroEffect">
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      if (sceneisfull360,
+        fromlittleplanetintrotonormalview();
+      );
+  </action>
+
+  <action name="setlittleplanet">
+    set(view.architectural, 0.0);
+    set(view.hlookat, get(panoview.h));
+    set(view.vlookat, 90);
+    set(view.pannini, 0.0);
+    if(panoview.fovmax LE 150,
+      set(view.fovmax, 150);
+    ,
+      set(view.fovmax, get(panoview.fovmax));
+    );
+    set(view.stereographic, true);
+    set(view.fisheyefovlink, 1.5);
+    set(view.fisheye, 1.0);
+    set(view.fov, 150);
+    
+    events.dispatch(onStartLittlePlanetIntroduction);
+  </action>
+  <action name="fromlittleplanetintrotonormalview">
+	tweennormalview();
+  </action>
+  <action name="tweennormalview">
+    hideTooltip();
+    tween(view.fovmax, get(panoview.fovmax), 3, easeoutquad);
+    tween(view.hlookat,  get(panoview.h), 3, easeoutquad);
+    tween(view.vlookat, get(panoview.v), 3, easeoutquad);
+    if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), 3, easeoutquad); );
+    tween(view.pannini, 0.0, 3, easeoutquad);
+    tween(view.fisheye, 0.0, 3, easeoutquad, 
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.fisheyefovlink, 0.5);
+      
+      
+      events.dispatch(onEndLittlePlanetIntroduction, true);
+      if (tour_firstlittleplanet,
+        events.dispatch(onTourStart, true);
+        set(tour_firstlittleplanet, false);
+      );
+      events.dispatch(onPanoStart, true);
+    );
+  </action>
+
 
 
 
@@ -457,19 +562,19 @@ stopautorotation();
 	ifnot (currentTooltipText == "",
 
 		tooltipTextSettingsUpdate(%1, %3, %4, %5, %6);
-		
+
 		set(tooltipHtmlText, get(currentTooltipText));
 		escape(tooltipHtmlText);
 		set(layer[get(tooltipCurrentTextfieldLayer)].html, get(tooltipHtmlText));
 		set(layer[get(tooltipCurrentTextfieldLayer)].visible, true);
-		
+
 		div(halfWidth, get(layer[get(tooltipCurrentTextfieldLayer)].width), 2);
 		div(halfHeight, get(layer[get(tooltipCurrentTextfieldLayer)].height), 2);
-		
+
 		<!-- Default edge center -->
 		set(usedWidth, get(halfWidth));
 		set(usedHeight, get(halfHeight));
-		
+
 		if(layer[get(tooltipCurrentTextfieldLayer)].edge == "left",
 			set(usedWidth, get(layer[get(tooltipCurrentTextfieldLayer)].width));
 			add(rightMargin, get(mouse.x), get(usedWidth));
@@ -484,10 +589,10 @@ stopautorotation();
 				sub(leftMargin, get(mouse.x), get(usedWidth));
 			);
 		);
-		
+
 		add(rightMargin, get(layer[get(tooltipCurrentTextfieldLayer)].xoffset));
 		add(leftMargin, get(layer[get(tooltipCurrentTextfieldLayer)].xoffset));
-		
+
 		if(layer[get(tooltipCurrentTextfieldLayer)].edge == "bottom",
 			set(usedHeight, get(layer[get(tooltipCurrentTextfieldLayer)].height));
 			sub(topMargin, get(mouse.y), get(usedHeight));
@@ -502,10 +607,10 @@ stopautorotation();
 				add(bottomMargin, get(mouse.y), get(usedHeight));
 			);
 		);
-		
+
 		add(topMargin, get(layer[get(tooltipCurrentTextfieldLayer)].yoffset));
 		add(bottomMargin, get(layer[get(tooltipCurrentTextfieldLayer)].yoffset));
-		
+
 		if(leftMargin LT 0,
 			set(layer[get(tooltipCurrentTextfieldLayer)].align, "left");
 			set(tooltipPositionX, get(usedWidth));
@@ -513,7 +618,7 @@ stopautorotation();
 			set(tooltipstagewidth, get(stagewidth));
 			if(area.left, sub(tooltipstagewidth, get(area.left)));
 			if(area.right, sub(tooltipstagewidth, get(area.right)));
-			
+
 			if(rightMargin GT tooltipstagewidth,
 				set(layer[get(tooltipCurrentTextfieldLayer)].align, "right");
 				set(tooltipPositionX, get(usedWidth));
@@ -523,9 +628,9 @@ stopautorotation();
 				add(tooltipPositionX, get(layer[get(tooltipCurrentTextfieldLayer)].xoffset));
 			);
 		);
-		
+
 		set(layer[get(tooltipCurrentTextfieldLayer)].x, get(tooltipPositionX));
-		
+
 		if(topMargin LT 0,
 			if(layer[get(tooltipCurrentTextfieldLayer)].align == "center",
 				set(layer[get(tooltipCurrentTextfieldLayer)].align, "top");
@@ -537,7 +642,7 @@ stopautorotation();
 			set(tooltipstageheight, get(stageheight));
 			if(area.top, sub(tooltipstageheight, get(area.top)));
 			if(area.bottom, sub(tooltipstageheight, get(area.bottom)));
-			
+
 			if(bottomMargin GT tooltipstageheight,
 				if(layer[get(tooltipCurrentTextfieldLayer)].align == "center",
 					set(layer[get(tooltipCurrentTextfieldLayer)].align, "bottom");
@@ -551,7 +656,7 @@ stopautorotation();
 				add(tooltipPositionY, get(layer[get(tooltipCurrentTextfieldLayer)].yoffset));
 			);
 		);
-		
+
 		set(layer[get(tooltipCurrentTextfieldLayer)].y, get(tooltipPositionY));
 	);
   );
@@ -571,7 +676,6 @@ stopautorotation();
 			set(layer[get(tooltipCurrentTextfieldLayer)].edge, %2);
 		);
 		if (%3 != null,
-			set(layer[get(tooltipCurrentTextfieldLayer)].autowidth, false);
 			set(layer[get(tooltipCurrentTextfieldLayer)].wordwrap, true);
 			set(layer[get(tooltipCurrentTextfieldLayer)].width, %3);
 		);
@@ -639,19 +743,13 @@ stopautorotation();
 				set(plugin[get(permanentTooltipForSpot)].enabled,false);
 				set(plugin[get(permanentTooltipForSpot)].capture,false);
 				set(layer[get(permanentTooltipForSpot)].visible, true);
-			
-				set(plugin[get(permanentTooltipForSpot)].url,'%FIRSTXML%/graphics/textfield.swf');
-				set(plugin[get(permanentTooltipForSpot)].background,false);
-				set(plugin[get(permanentTooltipForSpot)].border,false);
-				set(plugin[get(permanentTooltipForSpot)].textshadow,1);
-				set(plugin[get(permanentTooltipForSpot)].textshadowrange,4.0);
-				set(plugin[get(permanentTooltipForSpot)].textshadowangle,45);
-				set(plugin[get(permanentTooltipForSpot)].textshadowcolor,0x000000);
-				set(plugin[get(permanentTooltipForSpot)].textshadowalpha,1);
+
+				set(plugin[get(permanentTooltipForSpot)].type, 'text');
+				set(plugin[get(permanentTooltipForSpot)].bg,false);
+				set(plugin[get(permanentTooltipForSpot)].bgborder,0);
+				set(plugin[get(permanentTooltipForSpot)].txtshadow,'1.0 1.0 4.0 0x000000 1');
 				set(plugin[get(permanentTooltipForSpot)].css,'color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:center;');
-				set(plugin[get(permanentTooltipForSpot)].height,20);
-				set(plugin[get(permanentTooltipForSpot)].autoheight,true);
-				set(plugin[get(permanentTooltipForSpot)].selectable,false);
+				set(plugin[get(permanentTooltipForSpot)].interactivecontent, false);
 				set(plugin[get(permanentTooltipForSpot)].zorder,0);
 				set(plugin[get(permanentTooltipForSpot)].padding,2);
 
@@ -685,17 +783,14 @@ stopautorotation();
 	keep="true"
 	enabled="false"
 	capture="false"
-	url="%FIRSTXML%/graphics/textfield.swf"
+	type="text"
 	align="center"
-	background="false"
-	border="false"
-	textshadow="1" textshadowrange="4.0" textshadowangle="45" textshadowcolor="0x000000" textshadowalpha="1"
+	bg="false"
+	bgborder="0"
+	txtshadow="1.0 1.0 4.0 0x000000 1"
 	css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:left;"
-	height="20" 
-	autoheight="true"
-	autowidth="auto"
 	edge="bottom"
-	selectable="false"
+	interactivecontent="false"
 	zorder="0"
 	padding="2"
 	xoffset="0"

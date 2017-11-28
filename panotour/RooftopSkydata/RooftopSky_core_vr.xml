@@ -75,10 +75,111 @@
   </action>
 
 
-
   <action name="startbehavioursxmlcompleteaction">
-    events.dispatch(onPanoStart);
+    if (skipintro !== null,
+      set(tour_firstlittleplanet, false);
+      events.dispatch(onPanoStart);
+    ,
+
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      
+      
+      stoptween(view.fov);
+      stoptween(view.fovmax);
+      stoptween(view.hlookat);
+      stoptween(view.vlookat);
+      stoptween(view.fisheye);
+      
+      if (sceneisfull360 AND (device.webgl OR device.flash),
+	    setlittleplanet();
+      );
+
+
+    ifnot (sceneisfull360,
+      
+      set(view.fovmax, get(panoview.fovmax));
+      set(view.hlookat, get(panoview.h));
+      set(view.vlookat, get(panoview.v));
+      set(view.fisheye, 0.0);
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.pannini, 0.0);
+      set(view.fisheyefovlink, 0.5);
+      set(view.fov, get(panoview.fov));
+      
+      events.dispatch(onPanoStart);
+    );
+
+    );
   </action>
+
+  <action name="startLittlePlanetIntroEffect">
+      set(sceneisfull360, false);
+      if (scene[get(xml.scene)].full360,
+        sub(viewhfov, panoview.hmax, panoview.hmin);
+        if (viewhfov == 360,
+          sub(viewvfov, panoview.vmax, panoview.vmin);
+          if (viewvfov == 180,
+            set(sceneisfull360, true);
+          );
+        );
+      );
+      if (sceneisfull360,
+        fromlittleplanetintrotonormalview();
+      );
+  </action>
+
+  <action name="setlittleplanet">
+    set(view.architectural, 0.0);
+    set(view.hlookat, get(panoview.h));
+    set(view.vlookat, 90);
+    set(view.pannini, 0.0);
+    if(panoview.fovmax LE 150,
+      set(view.fovmax, 150);
+    ,
+      set(view.fovmax, get(panoview.fovmax));
+    );
+    set(view.stereographic, true);
+    set(view.fisheyefovlink, 1.5);
+    set(view.fisheye, 1.0);
+    set(view.fov, 150);
+    
+    events.dispatch(onStartLittlePlanetIntroduction);
+  </action>
+  <action name="fromlittleplanetintrotonormalview">
+	tweennormalview();
+  </action>
+  <action name="tweennormalview">
+    hideTooltip();
+    tween(view.fovmax, get(panoview.fovmax), 3, easeoutquad);
+    tween(view.hlookat,  get(panoview.h), 3, easeoutquad);
+    tween(view.vlookat, get(panoview.v), 3, easeoutquad);
+    if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), 3, easeoutquad); );
+    tween(view.pannini, 0.0, 3, easeoutquad);
+    tween(view.fisheye, 0.0, 3, easeoutquad, 
+      set(view.architectural, 0.0);
+      set(view.stereographic, false);
+      set(view.fisheyefovlink, 0.5);
+      
+      
+      events.dispatch(onEndLittlePlanetIntroduction, true);
+      if (tour_firstlittleplanet,
+        events.dispatch(onTourStart, true);
+        set(tour_firstlittleplanet, false);
+      );
+      events.dispatch(onPanoStart, true);
+    );
+  </action>
+
 
 
 
@@ -468,7 +569,6 @@ stopautorotation();
 			set(layer[get(tooltipCurrentTextfieldLayer)].edge, %2);
 		);
 		if (%3 != null,
-			set(layer[get(tooltipCurrentTextfieldLayer)].autowidth, false);
 			set(layer[get(tooltipCurrentTextfieldLayer)].wordwrap, true);
 			set(layer[get(tooltipCurrentTextfieldLayer)].width, %3);
 		);
@@ -536,19 +636,13 @@ stopautorotation();
 				set(plugin[get(permanentTooltipForSpot)].enabled,false);
 				set(plugin[get(permanentTooltipForSpot)].capture,false);
 				set(layer[get(permanentTooltipForSpot)].visible, true);
-			
-				set(plugin[get(permanentTooltipForSpot)].url,'%FIRSTXML%/graphics/textfield.swf');
-				set(plugin[get(permanentTooltipForSpot)].background,false);
-				set(plugin[get(permanentTooltipForSpot)].border,false);
-				set(plugin[get(permanentTooltipForSpot)].textshadow,1);
-				set(plugin[get(permanentTooltipForSpot)].textshadowrange,4.0);
-				set(plugin[get(permanentTooltipForSpot)].textshadowangle,45);
-				set(plugin[get(permanentTooltipForSpot)].textshadowcolor,0x000000);
-				set(plugin[get(permanentTooltipForSpot)].textshadowalpha,1);
+
+				set(plugin[get(permanentTooltipForSpot)].type, 'text');
+				set(plugin[get(permanentTooltipForSpot)].bg,false);
+				set(plugin[get(permanentTooltipForSpot)].bgborder,0);
+				set(plugin[get(permanentTooltipForSpot)].txtshadow,'1.0 1.0 4.0 0x000000 1');
 				set(plugin[get(permanentTooltipForSpot)].css,'color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:center;');
-				set(plugin[get(permanentTooltipForSpot)].height,20);
-				set(plugin[get(permanentTooltipForSpot)].autoheight,true);
-				set(plugin[get(permanentTooltipForSpot)].selectable,false);
+				set(plugin[get(permanentTooltipForSpot)].interactivecontent, false);
 				set(plugin[get(permanentTooltipForSpot)].zorder,0);
 				set(plugin[get(permanentTooltipForSpot)].padding,2);
 
@@ -582,17 +676,14 @@ stopautorotation();
 	keep="true"
 	enabled="false"
 	capture="false"
-	url="%FIRSTXML%/graphics/textfield.swf"
+	type="text"
 	align="center"
-	background="false"
-	border="false"
-	textshadow="1" textshadowrange="4.0" textshadowangle="45" textshadowcolor="0x000000" textshadowalpha="1"
+	bg="false"
+	bgborder="0"
+	txtshadow="1.0 1.0 4.0 0x000000 1"
 	css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:left;"
-	height="20" 
-	autoheight="true"
-	autowidth="auto"
 	edge="bottom"
-	selectable="false"
+	interactivecontent="false"
 	zorder="0"
 	padding="2"
 	xoffset="0"
@@ -760,7 +851,7 @@ stopautorotation();
 
 	<action name="webvr_onunavailable">
 
-		delayedcall(5.0, js(accessStdVr()););
+		delayedcall(5.0, js(accessStdVr(get(xml.scene))););
 
 		set(events[webvr_events].name, null);
 		removelayer(webvr_button_text);
@@ -775,18 +866,14 @@ stopautorotation();
 		set(display.hotspotrenderer,'');
 
 		addlayer(webvr_button_unavailable);
-		set(layer[webvr_button_unavailable].url, "%FIRSTXML%/graphics/textfield.swf");
+		set(layer[webvr_button_unavailable].type, 'text');
 		getmessage(vr_setup_ct_message, "vr_setup_unavailable");
 		set(layer[webvr_button_unavailable].html, get(vr_setup_ct_message));
-		set(layer[webvr_button_unavailable].background, false);
+		set(layer[webvr_button_unavailable].bg, false);
 		set(layer[webvr_button_unavailable].align, "center");
 		set(layer[webvr_button_unavailable].edge, "center");
-		set(layer[webvr_button_unavailable].textshadow, 1.0);
-		set(layer[webvr_button_unavailable].textshadowrange, 4.0);
-		set(layer[webvr_button_unavailable].textshadowangle, 45.0);
-		set(layer[webvr_button_unavailable].textshadowcolor, "0xd5d5d5");
-		set(layer[webvr_button_unavailable].textshadowalpha, 1.0);
-		set(layer[webvr_button_unavailable].onclick, js(accessStdVr()););
+		set(layer[webvr_button_unavailable].txtshadow, '1.0 1.0 4.0 0xd5d5d5 1.0');
+		set(layer[webvr_button_unavailable].onclick, js(accessStdVr(get(xml.scene))););
 		set(layer[webvr_button_unavailable].onloaded, if(device.mobile,set(css, 'color:#ffffff;font-size:24px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;text-align:center;');,set(css, 'color:#ffffff;font-size:32px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;text-align:center;')));"
 	</action>
 
@@ -810,7 +897,7 @@ stopautorotation();
 		set(layer[vr_rotate_device_required].alpha,0);
 
 
-		js(accessStdVr());
+		js(accessStdVr(get(xml.scene)));
 	</action>
 
 
@@ -851,17 +938,13 @@ stopautorotation();
 		>
 
 		<layer name="webvr_button_text"
-			url="%FIRSTXML%/graphics/textfield.swf"
+			type="text"
 			html=""
-			background="false"
+			bg="false"
 			align="center"
 			edge="bottom"
 			y="-100"
-			textshadow="1.0"
-			textshadowrange="4.0"
-			textshadowangle="45.0"
-			textshadowcolor="0xd5d5d5"
-			textshadowalpha="1.0"
+			txtshadow="1.0 1.0 4.0 0xd5d5d5 1.0"
 			enabled="false"
 			onloaded="getmessage(html, 'project_title');if(device.mobile,set(css, 'color:#ffffff;font-size:24px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;');,set(css, 'color:#ffffff;font-size:32px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;'));"
 			/>
@@ -1005,7 +1088,7 @@ stopautorotation();
 		vr_setup_createimage(vr_setup_hmd4, get(i_headset), center, center, 0, -20, #FFFFFF, true, vr_setup_select('headset_simple'), , vr_setup_save());
 		vr_setup_createtext(vr_setup_hmd2, get(i_headset), center, center, 0, 100, #FFFFFF, false);
 
-		vr_setup_createtext(vr_setup_advanced, '', center, center, 0, 140, #FFFFFF, true, set(background,true), set(background,false), vr_setup_advanced());
+		vr_setup_createtext(vr_setup_advanced, '', center, center, 0, 140, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_advanced());
 
 		vr_setup_createbutton(vr_setup_btn1, '&#60;', left, left, 5%, 0, #FFFFFF, true, null);
 		vr_setup_createbutton(vr_setup_btn2, '&#62;', right, right, 5%, 0, #FFFFFF, true, null);
@@ -1059,16 +1142,16 @@ stopautorotation();
 		vr_setup_createtext(vr_setup_hmd1, '', center, right, 0, +5, #FFFFFF, true, vr_setup_select('headset'));
 		vr_setup_createtext(vr_setup_hmd2, get(i_headset), center, left, 0, +5, #FFFFFF, true, vr_setup_select('headset'));
 
-		vr_setup_createtext(vr_setup_hmd3, '', center, center, 0, +35, #FFFFFF, true, set(background,true), set(background,false), vr_setup_customize_headset());
+		vr_setup_createtext(vr_setup_hmd3, '', center, center, 0, +35, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_customize_headset());
 
 		if(webvr.iswebvr == false,
-			vr_setup_createtext(vr_setup_cal, '', center, center, 0, +80, #FFFFFF, true, set(background,true), set(background,false), vr_setup_calibration());
+			vr_setup_createtext(vr_setup_cal, '', center, center, 0, +80, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_calibration());
 		);
 
-		vr_setup_createtext(vr_setup_sav   , '', center, right, -20, +125, #00AA00, true, set(background,true), set(background,false), vr_setup_save());
-		vr_setup_createtext(vr_setup_rst   , '', center, left , +20, +125, #FFFFFF, true, set(background,true), set(background,false), vr_setup_reset());
-		vr_setup_createtext(vr_setup_simple, '', center, right, -20, +155, #FFFFFF, true, set(background,true), set(background,false), vr_setup_simple());
-		vr_setup_createtext(vr_setup_cls   , '', center, left , +20, +155, #FFFFFF, true, set(background,true), set(background,false), vr_setup_close(true));
+		vr_setup_createtext(vr_setup_sav   , '', center, right, -20, +125, #00AA00, true, set(bg,true), set(bg,false), vr_setup_save());
+		vr_setup_createtext(vr_setup_rst   , '', center, left , +20, +125, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_reset());
+		vr_setup_createtext(vr_setup_simple, '', center, right, -20, +155, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_simple());
+		vr_setup_createtext(vr_setup_cls   , '', center, left , +20, +155, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_close(true));
 
 
 		vr_setup_createbutton(vr_setup_btn1, '&#60;', left, left, 5%, 0, #FFFFFF, true, null);
@@ -1095,15 +1178,15 @@ stopautorotation();
 		vr_setup_createtext(vr_setup_olp1, '', center, right, 0, +100, #FFFFFF, true, vr_setup_select('overlap'));
 		vr_setup_createtext(vr_setup_olp2, get(i_overlap), center, left, 0, +100, #FFFFFF, true, vr_setup_select('overlap'));
 
-		vr_setup_createtext(vr_setup_m35, '', center, center, 0, +160, #FFFFFF, true, set(background,true), set(background,false), vr_setup_close_sub_menus() );
+		vr_setup_createtext(vr_setup_m35, '', center, center, 0, +160, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_close_sub_menus() );
 
 
 		set(vr_setup_text_parent, 'vr_setup_m2');
 		vr_setup_createtext(vr_setup_cb1, '', center, center, 0, -160, #FFFFFF, false);
 		vr_setup_createtext(vr_setup_cb2, '', center, center, 0, -80, #FFFFFF, false, vr_setup_select('screen'));
-		vr_setup_createtext(vr_setup_cb3, '', center, center, 0, +40, #00AA00, true, set(background,true), set(background,false), vr_setup_do_calibration());
-		vr_setup_createtext(vr_setup_cb4, '', center, center, 0, +80, #FFFFFF, true, set(background,true), set(background,false), webvr.resetcalibration());
-		vr_setup_createtext(vr_setup_cb5, '', center, center, 0, +160, #FFFFFF, true, set(background,true), set(background,false), vr_setup_close_sub_menus());
+		vr_setup_createtext(vr_setup_cb3, '', center, center, 0, +40, #00AA00, true, set(bg,true), set(bg,false), vr_setup_do_calibration());
+		vr_setup_createtext(vr_setup_cb4, '', center, center, 0, +80, #FFFFFF, true, set(bg,true), set(bg,false), webvr.resetcalibration());
+		vr_setup_createtext(vr_setup_cb5, '', center, center, 0, +160, #FFFFFF, true, set(bg,true), set(bg,false), vr_setup_close_sub_menus());
 
 		vr_setup_createtext(vr_setup_cb6, '', center, center, 0, +120, #FFFFFF, false, null);
 		vr_setup_createtext(vr_setup_cb7, '', center, center, 0, +120, #00AA00, false, null);
@@ -1126,17 +1209,17 @@ stopautorotation();
 	<action name="vr_setup_createtext">
 		addlayer(%1);
 		set(layer[%1].parent, get(vr_setup_text_parent));
-		set(layer[%1].url, '%FIRSTXML%/graphics/textfield.swf');
+		set(layer[%1].type, 'text');
 		if(device.mobile,
 			set(layer[%1].css, 'color:%7;font-size:24px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;');
 		,
 			set(layer[%1].css, 'color:%7;font-size:32px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;');
 		);
 		set(layer[%1].padding, 0 8);
-		set(layer[%1].roundedge, 8);
-		set(layer[%1].background, false);
-		set(layer[%1].backgroundcolor, 0xFFFFFF);
-		set(layer[%1].backgroundalpha, 0.25);
+		set(layer[%1].bgroundedge, 8);
+		set(layer[%1].bg, false);
+		set(layer[%1].bgcolor, 0xFFFFFF);
+		set(layer[%1].bgalpha, 0.25);
 		set(layer[%1].align, %3);
 		set(layer[%1].edge, %4);
 		set(layer[%1].x, %5);
@@ -1166,9 +1249,9 @@ stopautorotation();
 			set(layer[%1].width, 60);
 			set(layer[%1].height, 60);
 		);
-		set(layer[%1].background, true);
+		set(layer[%1].bg, true);
 		set(layer[%1].padding, 0);
-		set(layer[%1].roundedge, 8);
+		set(layer[%1].bgroundedge, 8);
 		set(layer[%1].vcenter, true);
 	</action>
 
@@ -1298,18 +1381,18 @@ stopautorotation();
 
 	<action name="vr_setup_select">
 
-		set(layer[vr_setup_siz2].background, false);
-		set(layer[vr_setup_ipd2].background, false);
-		set(layer[vr_setup_hmd2].background, false);
-		set(layer[vr_setup_fov2].background, false);
-		set(layer[vr_setup_dst2].background, false);
-		set(layer[vr_setup_d2k1].background, false);
-		set(layer[vr_setup_d2k2].background, false);
-		set(layer[vr_setup_d2k3].background, false);
-		set(layer[vr_setup_d2k4].background, false);
-		set(layer[vr_setup_vig2].background, false);
-		set(layer[vr_setup_cac2].background, false);
-		set(layer[vr_setup_olp2].background, false);
+		set(layer[vr_setup_siz2].bg, false);
+		set(layer[vr_setup_ipd2].bg, false);
+		set(layer[vr_setup_hmd2].bg, false);
+		set(layer[vr_setup_fov2].bg, false);
+		set(layer[vr_setup_dst2].bg, false);
+		set(layer[vr_setup_d2k1].bg, false);
+		set(layer[vr_setup_d2k2].bg, false);
+		set(layer[vr_setup_d2k3].bg, false);
+		set(layer[vr_setup_d2k4].bg, false);
+		set(layer[vr_setup_vig2].bg, false);
+		set(layer[vr_setup_cac2].bg, false);
+		set(layer[vr_setup_olp2].bg, false);
 
 		set(selected_setting, null);
 		delete(selected_var_value);
@@ -1465,7 +1548,7 @@ stopautorotation();
 		);
 
 		if(selected_setting != null,
-			set(layer[get(selected_setting)].background, true);
+			set(layer[get(selected_setting)].bg, true);
 			if(%2 == true,
 				set(layer[vr_setup_btn1].y, get(layer[get(selected_setting)].y));
 				set(layer[vr_setup_btn2].y, get(layer[get(selected_setting)].y));
