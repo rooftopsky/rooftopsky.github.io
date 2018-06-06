@@ -1,0 +1,16 @@
+<krpano>
+	<lensflares name="obj">
+		<item name="flarka7151" ath="91" atv="-3" scene="scene_sunset" typ="blinkstyle4" dust_effect="false"/>
+		<item name="flarka6512" ath="88.54" atv="-20.51" scene="scene_001a" typ="blinkstyle1" dust_effect="false"/>
+		<item name="flarka14591" ath="-100.16" atv="-50.96" scene="scene_002a" typ="blinkstyle2" dust_effect="false"/>
+		<item name="flarka26735" ath="148.18" atv="-41.67" scene="scene_006a" typ="blinkstyle3" dust_effect="true"/>
+		<item name="flarka35462" ath="21.76" atv="-25.95" scene="scene_003a" typ="blinkstyle6" dust_effect="false"/>
+		<item name="flarka47239" ath="77.35" atv="-27.32" scene="scene_004a" typ="blinkstyle5" dust_effect="false"/>
+		<item name="flarka92223" ath="177.31" atv="-41.99" scene="scene_007a" typ="blinkstyle7" dust_effect="true"/>
+		<item name="flarka106717" ath="196.99" atv="-15.51" scene="scene_008a" typ="blinkstyle8" dust_effect="false"/>
+		<item name="flarka117558" ath="-172.26" atv="-15.57" scene="scene_009a" typ="blinkstyle9" dust_effect="false"/>
+		<item name="flarka22889" ath="-64.00" atv="-37.03" scene="pano18" typ="blinkstyle7" dust_effect="false"/>
+		<item name="flarka41185" ath="48.63" atv="-39.94" scene="pano639" typ="blinkstyle7" dust_effect="false"/>
+		<item name="flarka75856" ath="65.50" atv="-37.20" scene="pano19" typ="blinkstyle7" dust_effect="false"/>
+	</lensflares>
+</krpano>
