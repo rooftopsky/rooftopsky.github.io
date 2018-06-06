@@ -257,81 +257,359 @@ a.socialButton
 	cursor: pointer;
 }
 
-a.socialButton:hover
+a.socialButton.iconset0:hover, a.socialButton.iconset1:hover, a.socialButton.iconset2:hover, a.socialButton.iconset3:hover, a.socialButton.iconset4:hover
 {
 	background-position: bottom;
 }
 
-a.socialFacebook
+a.socialButton.iconset0
 {
-	background: url("images/social_facebook.png") top;
 	background-size: 100% 200%;
 }
 
-a.socialTwitter
+a.socialFacebook.iconset0
 {
-	background: url("images/social_twitter.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_facebook.png") top;
 }
 
-a.socialGoogle
+a.socialTwitter.iconset0
 {
-	background: url("images/social_google.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_twitter.png") top;
 }
 
-a.socialLinkedin
+a.socialGoogle.iconset0
 {
-	background: url("images/social_linkedin.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_google.png") top;
 }
 
-a.socialDigg
+a.socialLinkedin.iconset0
 {
-	background: url("images/social_digg.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_linkedin.png") top;
 }
 
-a.socialTumblr
+a.socialDigg.iconset0
 {
-	background: url("images/social_tumblr.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_digg.png") top;
 }
 
-a.socialReddit
+a.socialTumblr.iconset0
 {
-	background: url("images/social_reddit.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_tumblr.png") top;
 }
 
-a.socialStumbleUpon
+a.socialReddit.iconset0
 {
-	background: url("images/social_stumbleupon.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_reddit.png") top;
 }
 
-a.socialDelicious
+a.socialStumbleUpon.iconset0
 {
-	background: url("images/social_delicious.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_stumbleupon.png") top;
 }
 
-a.socialPinterest
+a.socialDelicious.iconset0
 {
-	background: url("images/social_pinterest.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_delicious.png") top;
 }
 
-a.socialVkontakte
+a.socialPinterest.iconset0
 {
-	background: url("images/social_vkontakte.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_pinterest.png") top;
 }
 
-a.socialMail
+a.socialVkontakte.iconset0
 {
-	background: url("images/social_mail.png") top;
-	background-size: 100% 200%;
+	background: url("images/iconset0/social_vkontakte.png") top;
+}
+
+a.socialLine.iconset0
+{
+	background: url("images/iconset0/social_line.png") top;
+}
+
+a.socialMail.iconset0
+{
+	background: url("images/iconset0/social_mail.png") top;
+}
+
+a.socialButton.iconset1
+{
+	background-size: 100%;
+}
+
+a.socialFacebook.iconset1
+{
+	background: url("images/iconset1/social_facebook.png") top;
+}
+
+a.socialTwitter.iconset1
+{
+	background: url("images/iconset1/social_twitter.png") top;
+}
+
+a.socialGoogle.iconset1
+{
+	background: url("images/iconset1/social_google.png") top;
+}
+
+a.socialLinkedin.iconset1
+{
+	background: url("images/iconset1/social_linkedin.png") top;
+}
+
+a.socialDigg.iconset1
+{
+	background: url("images/iconset1/social_digg.png") top;
+}
+
+a.socialTumblr.iconset1
+{
+	background: url("images/iconset1/social_tumblr.png") top;
+}
+
+a.socialReddit.iconset1
+{
+	background: url("images/iconset1/social_reddit.png") top;
+}
+
+a.socialStumbleUpon.iconset1
+{
+	background: url("images/iconset1/social_stumbleupon.png") top;
+}
+
+a.socialDelicious.iconset1
+{
+	background: url("images/iconset1/social_delicious.png") top;
+}
+
+a.socialPinterest.iconset1
+{
+	background: url("images/iconset1/social_pinterest.png") top;
+}
+
+a.socialVkontakte.iconset1
+{
+	background: url("images/iconset1/social_vkontakte.png") top;
+}
+
+a.socialLine.iconset1
+{
+	background: url("images/iconset1/social_line.png") top;
+}
+
+a.socialMail.iconset1
+{
+	background: url("images/iconset1/social_mail.png") top;
+}
+
+a.socialButton.iconset2
+{
+	background-size: 100%;
+}
+
+a.socialFacebook.iconset2
+{
+	background: url("images/iconset2/social_facebook.png") top;
+}
+
+a.socialTwitter.iconset2
+{
+	background: url("images/iconset2/social_twitter.png") top;
+}
+
+a.socialGoogle.iconset2
+{
+	background: url("images/iconset2/social_google.png") top;
+}
+
+a.socialLinkedin.iconset2
+{
+	background: url("images/iconset2/social_linkedin.png") top;
+}
+
+a.socialDigg.iconset2
+{
+	background: url("images/iconset2/social_digg.png") top;
+}
+
+a.socialTumblr.iconset2
+{
+	background: url("images/iconset2/social_tumblr.png") top;
+}
+
+a.socialReddit.iconset2
+{
+	background: url("images/iconset2/social_reddit.png") top;
+}
+
+a.socialStumbleUpon.iconset2
+{
+	background: url("images/iconset2/social_stumbleupon.png") top;
+}
+
+a.socialDelicious.iconset2
+{
+	background: url("images/iconset2/social_delicious.png") top;
+}
+
+a.socialPinterest.iconset2
+{
+	background: url("images/iconset2/social_pinterest.png") top;
+}
+
+a.socialVkontakte.iconset2
+{
+	background: url("images/iconset2/social_vkontakte.png") top;
+}
+
+a.socialLine.iconset2
+{
+	background: url("images/iconset2/social_line.png") top;
+}
+
+a.socialMail.iconset2
+{
+	background: url("images/iconset2/social_mail.png") top;
+}
+
+a.socialButton.iconset3
+{
+	background-size: 100%;
+}
+
+a.socialFacebook.iconset3
+{
+	background: url("images/iconset3/social_facebook.png") top;
+}
+
+a.socialTwitter.iconset3
+{
+	background: url("images/iconset3/social_twitter.png") top;
+}
+
+a.socialGoogle.iconset3
+{
+	background: url("images/iconset3/social_google.png") top;
+}
+
+a.socialLinkedin.iconset3
+{
+	background: url("images/iconset3/social_linkedin.png") top;
+}
+
+a.socialDigg.iconset3
+{
+	background: url("images/iconset3/social_digg.png") top;
+}
+
+a.socialTumblr.iconset3
+{
+	background: url("images/iconset3/social_tumblr.png") top;
+}
+
+a.socialReddit.iconset3
+{
+	background: url("images/iconset3/social_reddit.png") top;
+}
+
+a.socialStumbleUpon.iconset3
+{
+	background: url("images/iconset3/social_stumbleupon.png") top;
+}
+
+a.socialDelicious.iconset3
+{
+	background: url("images/iconset3/social_delicious.png") top;
+}
+
+a.socialPinterest.iconset3
+{
+	background: url("images/iconset3/social_pinterest.png") top;
+}
+
+a.socialVkontakte.iconset3
+{
+	background: url("images/iconset3/social_vkontakte.png") top;
+}
+
+a.socialLine.iconset3
+{
+	background: url("images/iconset3/social_line.png") top;
+}
+
+a.socialMail.iconset3
+{
+	background: url("images/iconset3/social_mail.png") top;
+}
+
+a.socialButton.iconset4
+{
+	background-size: 100%;
+}
+
+a.socialFacebook.iconset4
+{
+	background: url("images/iconset4/social_facebook.png") top;
+}
+
+a.socialTwitter.iconset4
+{
+	background: url("images/iconset4/social_twitter.png") top;
+}
+
+a.socialGoogle.iconset4
+{
+	background: url("images/iconset4/social_google.png") top;
+}
+
+a.socialLinkedin.iconset4
+{
+	background: url("images/iconset4/social_linkedin.png") top;
+}
+
+a.socialDigg.iconset4
+{
+	background: url("images/iconset4/social_digg.png") top;
+}
+
+a.socialTumblr.iconset4
+{
+	background: url("images/iconset4/social_tumblr.png") top;
+}
+
+a.socialReddit.iconset4
+{
+	background: url("images/iconset4/social_reddit.png") top;
+}
+
+a.socialStumbleUpon.iconset4
+{
+	background: url("images/iconset4/social_stumbleupon.png") top;
+}
+
+a.socialDelicious.iconset4
+{
+	background: url("images/iconset4/social_delicious.png") top;
+}
+
+a.socialPinterest.iconset4
+{
+	background: url("images/iconset4/social_pinterest.png") top;
+}
+
+a.socialVkontakte.iconset4
+{
+	background: url("images/iconset4/social_vkontakte.png") top;
+}
+
+a.socialLine.iconset4
+{
+	background: url("images/iconset4/social_line.png") top;
+}
+
+a.socialMail.iconset4
+{
+	background: url("images/iconset4/social_mail.png") top;
 }
 
 div.socialEmbed
