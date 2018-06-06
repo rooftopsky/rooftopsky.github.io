@@ -23,6 +23,9 @@
   <krpano projection_current_params="view.fisheyefovlink=0.5&amp;view.architectural=0.0&amp;view.pannini=0.0&amp;view.fisheye=0.0&amp;view.stereographic=false" />
 
 
+  <display autofullscreen="false" devices="android" />
+
+
   <krpano vrtourdevice.desktop="desktop" vrtourdevice.tablet="tablet" vrtourdevice.mobile="mobile" />
   <krpano vrtourdevicescale.desktop="1.0" vrtourdevicescale.tablet="1.0" vrtourdevicescale.mobile="2.0" />
   <action name="vrtourcurrentscale" autorun="preinit">
@@ -197,6 +200,7 @@
   <action name="startTourForJsEventsAction">
     js(eventTourStarted());
   </action>
+
 
 
   <events name="showLensflaresOnNewPanoEvent" onPanoStart="showLensflaresOnNewPanoAction" keep="true" devices="flash" />
@@ -547,6 +551,7 @@ stopautorotation();
 
   <!-- Tooltips management -->
 <!-- Tooltip Management -->
+
 <krpano tooltipCurrentTextfieldLayer="panotourTooltipDefaultText" coretooltipmess=""/>
 
 <events name="showHideTooltipEvents" onremovepano="hideTooltip();" keep="true" />
@@ -559,6 +564,7 @@ stopautorotation();
 	,
 		set(tooltipCurrentTextfieldLayer, %2);
 	);
+
 	ifnot (currentTooltipText == "",
 
 		tooltipTextSettingsUpdate(%1, %3, %4, %5, %6);
@@ -661,10 +667,6 @@ stopautorotation();
 	);
   );
 </action>
-<action name="hideTooltip">
-	set(layer[get(tooltipCurrentTextfieldLayer)].visible, false);
-	set(layer[get(tooltipCurrentTextfieldLayer)].html, '');
-</action>
 
 <action name="tooltipTextSettingsUpdate">
 	if(get(tooltipCurrentTextfieldLayer) != "",
@@ -687,6 +689,11 @@ stopautorotation();
 		);
 		set(layer[get(tooltipCurrentTextfieldLayer)].zorder, 99);
 	);
+</action>
+
+<action name="hideTooltip">
+	set(layer[get(tooltipCurrentTextfieldLayer)].visible, false);
+	set(layer[get(tooltipCurrentTextfieldLayer)].html, '');
 </action>
 
 <action name="showPermanentTooltip">
@@ -779,6 +786,7 @@ stopautorotation();
 
 
 <!-- Default HTML5 tooltip style -->
+
 <layer name="panotourTooltipDefaultText"
 	keep="true"
 	enabled="false"
@@ -790,11 +798,12 @@ stopautorotation();
 	txtshadow="1.0 1.0 4.0 0x000000 1"
 	css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:left;"
 	edge="bottom"
-	interactivecontent="false"
 	zorder="0"
-	padding="2"
 	xoffset="0"
 	yoffset="0"
+	interactivecontent="false"
+	wordwrap="true"
+	padding="2"
 	visible="false"
 	html=""
 />
